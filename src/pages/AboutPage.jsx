@@ -94,6 +94,7 @@ export const AboutPage = ({ navigate }) => {
               <img
                 src="/assets/model-drape.png"
                 alt="LAK Sarees Model Editorial"
+                onError={(e) => { e.currentTarget.src = '/images/fallback-saree.jpg' }}
                 className="w-full h-auto object-cover"
               />
             </div>

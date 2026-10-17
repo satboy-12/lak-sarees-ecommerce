@@ -89,7 +89,8 @@ export const OrderConfirmationPage = ({ order, navigate }) => {
                 <div key={idx} className="flex gap-4 p-3 bg-surface-container-low/40 rounded-xl border border-outline-variant/20">
                   <img
                     src={item.image}
-                    alt=""
+                    alt={item.name}
+                    onError={(e) => { e.currentTarget.src = '/images/fallback-saree.jpg' }}
                     className="w-16 h-20 object-cover rounded-lg bg-surface-container shrink-0 border"
                   />
                   <div className="flex-1 min-w-0">

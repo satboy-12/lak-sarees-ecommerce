@@ -601,7 +601,8 @@ export const AdminDashboard = ({ navigate }) => {
                         <td className="py-3 px-3">
                           <img
                             src={p.image}
-                            alt=""
+                            alt={p.name}
+                            onError={(e) => { e.currentTarget.src = '/images/fallback-saree.jpg' }}
                             className="w-12 h-15 object-cover rounded-md bg-surface-container border border-outline-variant/30"
                           />
                         </td>

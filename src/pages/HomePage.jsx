@@ -122,8 +122,9 @@ export const HomePage = ({ navigate, onSelectProduct }) => {
             <div className="lg:col-span-7 order-1 lg:order-2">
               <div className="relative w-full aspect-[4/3] lg:aspect-[16/11] rounded-2xl overflow-hidden shadow-2xl group border border-outline-variant/30 bg-surface-container-low">
                 <img
-                  src="/assets/hero-bride.png"
+                  src="/images/hero/lak-sarees-hero.jpg"
                   alt="Indian bride draped in LAK Sarees heirloom pure gold zari bridal weave in royal courtyard"
+                  onError={(e) => { e.currentTarget.src = '/assets/hero-bride.png' }}
                   className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                 />
 
@@ -197,6 +198,7 @@ export const HomePage = ({ navigate, onSelectProduct }) => {
                 <img
                   src={cat.image}
                   alt={cat.name}
+                  onError={(e) => { e.currentTarget.src = '/images/fallback-saree.jpg' }}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -260,6 +262,7 @@ export const HomePage = ({ navigate, onSelectProduct }) => {
                 <img
                   src="/assets/model-drape.png"
                   alt="Master craftsmanship at LAK Sarees atelier"
+                  onError={(e) => { e.currentTarget.src = '/images/fallback-saree.jpg' }}
                   className="w-full h-full object-cover object-top"
                 />
               </div>
@@ -361,8 +364,9 @@ export const HomePage = ({ navigate, onSelectProduct }) => {
             <div className="lg:col-span-6">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-secondary/30">
                 <img
-                  src="/assets/packaging.png"
+                  src="/images/branding/lak-sarees-packaging.jpg"
                   alt="LAK Sarees Signature Keepsake Rigid Packaging"
+                  onError={(e) => { e.currentTarget.src = '/assets/packaging.png' }}
                   className="w-full h-auto object-cover"
                 />
               </div>

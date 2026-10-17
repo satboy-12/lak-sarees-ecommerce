@@ -398,21 +398,21 @@ export const categoriesList = [
     name: 'Pure Kanchipuram',
     tagline: 'The Gold Standard of Southern Silk Weaves',
     count: 4,
-    image: '/images/banners/banner-kanchipuram.jpg'
+    image: '/images/collections/kanchipuram-silk.jpg'
   },
   {
     id: 'Banarasi Couture',
     name: 'Banarasi Couture',
     tagline: 'Imperial Kadwa Brocades from the Ghats of Kashi',
     count: 3,
-    image: '/images/banners/banner-banarasi.jpg'
+    image: '/images/collections/banarasi-silk.jpg'
   },
   {
     id: 'Chanderi & Tussar',
     name: 'Chanderi & Tussar',
     tagline: 'Weightless Tissue and Forest Wild Silks',
     count: 2,
-    image: '/images/banners/banner-festive.jpg'
+    image: '/images/collections/festive-chanderi.jpg'
   },
   {
     id: 'Soft Silk',
@@ -426,6 +426,6 @@ export const categoriesList = [
     name: 'Everyday Cotton',
     tagline: 'Cool Organic Handspun Grace',
     count: 1,
-    image: '/images/banners/banner-cotton.jpg'
+    image: '/images/collections/cotton-handloom.jpg'
   }
 ]
