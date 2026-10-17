@@ -1,0 +1,56 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+        (request.auth.token.admin == true || 
+         request.auth.token.email.matches('.*@laksarees[.]com'));
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Public Product Catalog: Anyone can read, only Admins can create/update/delete
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Categories and Public Site Settings: Anyone can read, only Admins can write
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    
+    match /siteSettings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Customer Orders:
+    // - Customers can create orders and read only their own orders
+    // - Customers CANNOT modify or delete past orders
+    // - Only Admins can read all orders and update order status (fulfillment)
+    match /orders/{orderId} {
+      allow create: if request.resource.data.keys().hasAll(['orderRef', 'customer', 'items', 'total', 'paymentStatus'])
+                    && request.resource.data.total > 0;
+      allow read: if isAdmin() || (isAuthenticated() && request.auth.uid == resource.data.customer.uid);
+      allow update: if isAdmin();
+      allow delete: if false; // Orders must be immutable for audit integrity
+    }
+
+    // Customer Profiles:
+    // - Users can read and update their own private profile
+    // - Public users cannot view other users' profiles
+    match /users/{userId} {
+      allow read, write: if isOwner(userId) || isAdmin();
+    }
+  }
+}
