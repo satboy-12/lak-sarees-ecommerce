@@ -1,0 +1,323 @@
+/* LAK SAREES — Cinematic Grand Opening Animation Scoped Styles
+   Colors strictly:
+   - Deep Maroon: #68182B
+   - Warm Cream: #F7F0E8
+   - Muted Gold: #C6A15B
+*/
+
+.lak-cinematic-root {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: #68182B;
+  color: #F7F0E8;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-family: 'Plus Jakarta Sans', 'Playfair Display', Georgia, sans-serif;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.85s cubic-bezier(0.25, 1, 0.5, 1), transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, transform;
+}
+
+.lak-cinematic-root.lak-cinematic-exit {
+  opacity: 0;
+  transform: scale(1.03);
+  pointer-events: none;
+}
+
+/* Ambient Radial Glow & Dark Maroon Atmosphere */
+.lak-cinematic-ambient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(198, 161, 91, 0.16) 0%, rgba(104, 24, 43, 0.55) 45%, rgba(104, 24, 43, 0.95) 80%, #68182B 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.lak-cinematic-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(50, 10, 20, 0.75) 85%, rgba(35, 6, 14, 0.95) 100%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Silk Layers Container */
+.lak-cinematic-silk-layer {
+  position: absolute;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  pointer-events: none;
+  transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 2.8s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease;
+  will-change: opacity, transform, filter;
+  background-size: cover;
+  background-position: center 40%;
+}
+
+/* Scene 1: Silk Unfold & Macro Texture */
+.lak-cinematic-silk-macro {
+  opacity: 0;
+  transform: scale(1.15) rotate(-0.5deg);
+  filter: brightness(0.65) contrast(1.1);
+}
+
+.lak-cinematic-silk-macro.lak-active {
+  opacity: 0.65;
+  transform: scale(1.02) rotate(0deg);
+  filter: brightness(0.9) contrast(1.08);
+}
+
+.lak-cinematic-silk-macro.lak-passed {
+  opacity: 0.25;
+  transform: scale(0.98);
+  filter: brightness(0.5) blur(4px);
+}
+
+/* Scene 2: Flowing Silk Drapery */
+.lak-cinematic-silk-flow {
+  opacity: 0;
+  transform: translate3d(-3%, 0, 0) scale(1.12);
+  filter: brightness(0.7) contrast(1.1);
+}
+
+.lak-cinematic-silk-flow.lak-active {
+  opacity: 0.85;
+  transform: translate3d(2%, -1%, 0) scale(1.03);
+  filter: brightness(0.95) contrast(1.05);
+}
+
+.lak-cinematic-silk-flow.lak-passed {
+  opacity: 0.35;
+  transform: translate3d(3%, -2%, 0) scale(1.0);
+  filter: brightness(0.4) blur(10px);
+}
+
+/* Soft Golden Light Sweep across the Silk */
+.lak-cinematic-light-sweep {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(198, 161, 91, 0.08) 42%,
+    rgba(247, 240, 232, 0.32) 50%,
+    rgba(198, 161, 91, 0.18) 58%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  transform: translate3d(-60%, -20%, 0);
+  transition: transform 2.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
+}
+
+.lak-cinematic-light-sweep.lak-active {
+  opacity: 1;
+  transform: translate3d(40%, 15%, 0);
+}
+
+/* Text Captions & Badges */
+.lak-cinematic-caption {
+  position: absolute;
+  bottom: 12%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+  padding: 0 1.5rem;
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.lak-cinematic-caption.lak-hidden {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.lak-cinematic-caption.lak-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scene 3: Royal Brand Reveal Plaque */
+.lak-cinematic-brand-stage {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 580px;
+  width: 90%;
+  padding: 0 1rem;
+  opacity: 0;
+  transform: scale(0.94) translateY(14px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.lak-cinematic-brand-stage.lak-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Emblem Frame: Elegant luxury seal with fine gold borders */
+.lak-cinematic-emblem-card {
+  position: relative;
+  background-color: #F7F0E8;
+  border-radius: 18px;
+  padding: 1.5rem 2rem;
+  box-shadow: 
+    0 25px 60px -12px rgba(25, 4, 10, 0.65),
+    0 0 50px rgba(198, 161, 91, 0.28),
+    inset 0 0 0 1px rgba(198, 161, 91, 0.45);
+  border: 1px solid rgba(198, 161, 91, 0.6);
+  max-width: 440px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  transition: box-shadow 1.5s ease;
+}
+
+/* Inner gold hairline border inside the plaque */
+.lak-cinematic-emblem-card::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(198, 161, 91, 0.35);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+/* Gold Shimmer Sweep across the Logo */
+.lak-cinematic-logo-shimmer {
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 70%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(198, 161, 91, 0.25) 50%,
+    rgba(255, 255, 255, 0.5) 55%,
+    rgba(198, 161, 91, 0.25) 60%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 1.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease;
+}
+
+.lak-cinematic-logo-shimmer.lak-shimmer-run {
+  opacity: 1;
+  transform: rotate(25deg) translate3d(400%, 0, 0);
+}
+
+/* Corner Filigree Accents */
+.lak-cinematic-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: #C6A15B;
+  border-style: solid;
+  pointer-events: none;
+}
+.lak-cinematic-corner-tl { top: 9px; left: 9px; border-width: 2px 0 0 2px; }
+.lak-cinematic-corner-tr { top: 9px; right: 9px; border-width: 2px 2px 0 0; }
+.lak-cinematic-corner-bl { bottom: 9px; left: 9px; border-width: 0 0 2px 2px; }
+.lak-cinematic-corner-br { bottom: 9px; right: 9px; border-width: 0 2px 2px 0; }
+
+/* The Logo image itself: strictly sharp, centered, undistorted */
+.lak-cinematic-logo-img {
+  width: 100%;
+  height: auto;
+  max-height: 160px;
+  object-fit: contain;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  filter: drop-shadow(0 2px 8px rgba(104, 24, 43, 0.08));
+}
+
+@media (min-width: 640px) {
+  .lak-cinematic-logo-img {
+    max-height: 190px;
+  }
+}
+
+/* Skip Button: Restrained luxury, accessible, top-right */
+.lak-cinematic-skip-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(198, 161, 91, 0.4);
+  background: rgba(104, 24, 43, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #F7F0E8;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.lak-cinematic-skip-btn:hover {
+  background: rgba(198, 161, 91, 0.25);
+  border-color: #C6A15B;
+  color: #F7F0E8;
+  transform: translateY(-1px);
+}
+
+.lak-cinematic-skip-btn:focus-visible {
+  outline: 2px solid #C6A15B;
+  outline-offset: 3px;
+}
+
+/* Subtle Progress Arc in Skip Button */
+.lak-cinematic-progress-ring {
+  width: 14px;
+  height: 14px;
+  transform: rotate(-90deg);
+}
+
+.lak-cinematic-progress-circle {
+  transition: stroke-dashoffset 0.1s linear;
+  stroke: #C6A15B;
+}
+
+/* Accessibility: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .lak-cinematic-root {
+    transition: opacity 0.2s ease !important;
+  }
+  .lak-cinematic-silk-layer,
+  .lak-cinematic-light-sweep,
+  .lak-cinematic-brand-stage,
+  .lak-cinematic-logo-shimmer {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    transform: none !important;
+  }
+}

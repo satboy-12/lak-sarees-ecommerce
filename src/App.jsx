@@ -49,9 +49,11 @@ function MainContent() {
   // Last placed order for Confirmation Page
   const [lastOrder, setLastOrder] = useState(null)
 
-  // Grand Opening Intro (shown once per browser session on root homepage)
+  // Grand Opening Intro (shown once per browser session on root homepage, or with ?intro=true)
   const [showIntro, setShowIntro] = useState(() => {
     try {
+      const searchParams = new URLSearchParams(window.location.search)
+      if (searchParams.get('intro') === 'true' || searchParams.get('intro') === '1') return true
       const path = window.location.pathname.replace(/\/+$/, '') || '/'
       if (path !== '/' && path !== '') return false
       return sessionStorage.getItem('lak_intro_seen') !== 'true'
