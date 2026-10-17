@@ -101,6 +101,11 @@ export const ProductDetailPage = ({ product, navigate, onSelectProduct }) => {
               >
                 <Heart size={16} fill={wish ? 'currentColor' : 'none'} />
               </button>
+
+              {/* Illustrative Demo Catalogue Disclosure Tag */}
+              <div className="absolute bottom-4 right-4 bg-surface-container-lowest/80 backdrop-blur-xs rounded px-2.5 py-1 text-[9px] uppercase tracking-wider text-on-surface-variant font-medium border border-outline-variant/30 hidden sm:block">
+                Illustrative Demo Photography
+              </div>
             </div>
 
             {/* Thumbnail Gallery Strip */}

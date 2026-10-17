@@ -8,6 +8,7 @@ import { Footer } from './components/Footer'
 import { CartDrawer } from './components/CartDrawer'
 import { QuickViewModal } from './components/QuickViewModal'
 import { AuthModal } from './components/AuthModal'
+import { GrandOpeningIntro } from './components/GrandOpeningIntro'
 
 import { HomePage } from './pages/HomePage'
 import { ShopPage } from './pages/ShopPage'
@@ -47,6 +48,17 @@ function MainContent() {
 
   // Last placed order for Confirmation Page
   const [lastOrder, setLastOrder] = useState(null)
+
+  // Grand Opening Intro (shown once per browser session on root homepage)
+  const [showIntro, setShowIntro] = useState(() => {
+    try {
+      const path = window.location.pathname.replace(/\/+$/, '') || '/'
+      if (path !== '/' && path !== '') return false
+      return sessionStorage.getItem('lak_intro_seen') !== 'true'
+    } catch (e) {
+      return false
+    }
+  })
 
   // Listen to browser Back / Forward events
   useEffect(() => {
@@ -110,6 +122,11 @@ function MainContent() {
 
   return (
     <div className="min-h-screen flex flex-col bg-surface font-sans text-on-surface antialiased">
+      {/* Grand Opening Experience (Session-aware luxury intro) */}
+      {showIntro && route === 'home' && (
+        <GrandOpeningIntro onComplete={() => setShowIntro(false)} />
+      )}
+
       {/* Flagship Header (Hidden only on Admin dashboard for full atelier experience) */}
       {route !== 'admin' && (
         <Header currentRoute={route} navigate={navigate} />

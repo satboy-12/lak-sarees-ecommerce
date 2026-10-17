@@ -6,9 +6,11 @@ import {
   ShieldCheck, Sparkles, Award, Heart, CheckCircle2,
   ArrowRight, MessageCircle, MapPin
 } from 'lucide-react'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 
 export const AboutPage = ({ navigate }) => {
   const WHATSAPP_NUMBER = '919876543210'
+  useScrollReveal()
 
   return (
     <div className="flex flex-col w-full bg-surface">

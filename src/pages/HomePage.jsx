@@ -5,6 +5,7 @@ import React from 'react'
 import { useStore } from '../context/StoreContext'
 import { ProductCard } from '../components/ProductCard'
 import { categoriesList } from '../data/products'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 import {
   ArrowRight, ShieldCheck, Sparkles, Award, Globe,
   MessageCircle, Video, Star, CheckCircle, Package
@@ -15,6 +16,9 @@ export const HomePage = ({ navigate, onSelectProduct }) => {
   const WHATSAPP_NUMBER = '919876543210'
 
   const featuredSarees = products.filter(p => p.featured).slice(0, 6)
+
+  // Activate subtle scroll reveal for existing sections
+  useScrollReveal(featuredSarees.length)
 
   const testimonials = [
     {
@@ -193,7 +197,7 @@ export const HomePage = ({ navigate, onSelectProduct }) => {
               <div
                 key={cat.id}
                 onClick={() => navigate('shop', { category: cat.id })}
-                className="group relative rounded-xl overflow-hidden aspect-[3/4] cursor-pointer shadow-sm border border-outline-variant/30 hover:shadow-luxury transition-all duration-300"
+                className={`group relative rounded-xl overflow-hidden aspect-[3/4] cursor-pointer shadow-sm border border-outline-variant/30 hover:shadow-luxury transition-all duration-300 reveal-on-scroll delay-${(idx % 5) * 100}`}
               >
                 <img
                   src={cat.image}
@@ -244,20 +248,22 @@ export const HomePage = ({ navigate, onSelectProduct }) => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {featuredSarees.map((saree) => (
-              <ProductCard key={saree.id} product={saree} onSelect={onSelectProduct} />
+            {featuredSarees.map((saree, idx) => (
+              <div key={saree.id} className={`reveal-on-scroll delay-${(idx % 3) * 100}`}>
+                <ProductCard product={saree} onSelect={onSelectProduct} />
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* 5. WEAVING STORY & ARTISAN HERITAGE */}
-      <section id="brand-story" className="w-full py-16 lg:py-24 bg-surface">
+      <section id="brand-story" className="w-full py-16 lg:py-24 bg-surface reveal-on-scroll">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             
             {/* Visual */}
-            <div className="lg:col-span-6 relative">
+            <div className="lg:col-span-6 relative reveal-on-scroll delay-100">
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border border-outline-variant/30">
                 <img
                   src="/assets/model-drape.png"
@@ -325,7 +331,7 @@ export const HomePage = ({ navigate, onSelectProduct }) => {
       </section>
 
       {/* 6. SIGNATURE HEIRLOOM PACKAGING SHOWCASE */}
-      <section className="w-full py-16 bg-primary text-surface-container-lowest">
+      <section className="w-full py-16 bg-primary text-surface-container-lowest reveal-on-scroll">
         <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
@@ -391,7 +397,7 @@ export const HomePage = ({ navigate, onSelectProduct }) => {
             {testimonials.map((t, idx) => (
               <div
                 key={idx}
-                className="bg-surface-container-lowest p-6 sm:p-8 rounded-xl border border-outline-variant/30 shadow-sm flex flex-col justify-between"
+                className={`bg-surface-container-lowest p-6 sm:p-8 rounded-xl border border-outline-variant/30 shadow-sm flex flex-col justify-between reveal-on-scroll delay-${(idx % 3) * 100}`}
               >
                 <div>
                   <div className="flex items-center gap-1 text-secondary mb-4">
